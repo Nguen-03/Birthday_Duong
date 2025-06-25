@@ -1,0 +1,121 @@
+#gift{
+    width: 100%;
+    height: auto;
+    display: block;
+    top: 40%;
+}
+
+#left{
+    position: absolute;
+    border-radius: 10%;
+    left: 50px;
+    background-color: rgb(241, 244, 238);
+    box-shadow: 0 8px;
+    color: rgb(1, 162, 28);
+    display: inline-block;
+    margin: 2px 4px;
+    width: 100px;
+    height: 70px;
+    display: inline-block;
+    cursor: pointer;
+    stroke-opacity:initial;
+    border: rgb(1, 162, 28);
+    transition: none;
+}
+
+#left:hover:active{
+    background-color: rgb(1, 162, 28);
+    color: white;
+    box-shadow: 0 2px;
+    transform: translateY(4px);
+}
+
+
+#right{
+    text-align: center;
+    position: absolute;
+    border-radius: 10%;
+    right: 50px;
+    background-color: rgb(241, 244, 238);
+    box-shadow: 0 8px;
+    color: rgb(1, 162, 28);
+    margin: 2px 4px;
+    width: 100px;
+    height: 70px;
+    display: inline-block;
+    cursor: pointer;
+    stroke-opacity:initial;
+    border: rgb(1, 162, 28);
+    transition: width 4s, height 4s, background-color ;
+}
+
+#right:active:hover{
+    background-color: rgb(1, 162, 28);
+    color: white;
+    box-shadow: 0 2px;
+    transform: translateY(4px);
+}
+
+button {
+    display: flex;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#gamePlay{
+    touch-action: none;
+}
+
+#gameCanvas{
+    border: 1px;
+    top: 0;
+    left: 0;
+    color: rgb(13, 242, 242);
+    display: block;
+    margin: 0 auto; 
+    background: #445032;
+    z-index: 1;
+}
+
+#gameOver{
+    display: none;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#notice{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: white;
+}
+
+#police{
+    /* position: fixed; */
+    padding-top: 50px;
+    left: 15%;
+    height: 300px;
+    width: 300px;
+}
+
+#replay{
+    position: absolute;
+    border: rgb(241, 244, 238);
+    border-radius: 10px;
+    color: aliceblue;
+    bottom: 200px;
+    display: inline-block;
+    width: 90px;
+    height: 60px;
+    background: rgb(64, 214, 89);
+}
