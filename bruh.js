@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-const tempImg = ["player.jpg", "player2.jpg"];
+const tempImg = ["enemy1.jpg", "enemy2.jpg", "enemy3.jpg", "enemy4.jpg", "enemy5.jpg"];
 const pic = [];
 for (let temp of tempImg){
     const bruh = new Image();
@@ -24,10 +24,10 @@ let car = {
 let moveLeft = false;
 let moveRight = false;
 
-document.getElementById("left").addEventListener("touchstart", () => moveLeft = true);
-document.getElementById("left").addEventListener("touchend", () => moveLeft = false);
-document.getElementById("right").addEventListener("touchstart", () => moveRight = true);
-document.getElementById("right").addEventListener("touchend", () => moveRight = false);
+document.getElementById("left").addEventListener("pointerdown", () => moveLeft = true);
+document.getElementById("left").addEventListener("pointerup", () => moveLeft = false);
+document.getElementById("right").addEventListener("pointerdown", () => moveRight = true);
+document.getElementById("right").addEventListener("pointerup", () => moveRight = false);
 
 
 function control(){
@@ -41,24 +41,23 @@ function control(){
 let enemies = [];
 function spawnEnemies(){
     const x = Math.floor(Math.random() * 4) * 100 + 25;
+    let ImgSize = Math.floor(Math.random() * pic.length);
     var enemy = {
         x: x,
         y: 0,
         width: 50,
         height: 100,
-        speed: 4,
-        type: pic[Math.floor(Math.random() * 2)]
+        speed: 5,
+        type: pic[ImgSize]
     }
     enemies.push(enemy);
 }
 
 let count = 0;
 
-// setInterval(speedUp, 1000);
 
 function drawCar(car){
     ctx.drawImage(car.type, car.x, car.y, car.width, car.height);
-    // ctx.fillRect(car.x, car.y, car.width, car.height);
 }
 
 function colision(enemy, car){
@@ -80,7 +79,6 @@ function gameOverScreen(){
     document.getElementById("gameOver").style.display = "flex";
 }
 
-
 function speedUp(count, car, enemy){
     count += 1;
     if (count % 5000 == 0){
@@ -89,18 +87,17 @@ function speedUp(count, car, enemy){
     }
 }
 
+let timeSpawn = 800;
 
-let timeSpawn = 1000;
 setInterval(spawnEnemies, timeSpawn);
 function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawCar(car);
-    timeSpawn++;
     for (let enemy of enemies){
-        // const img = new Image();
         drawCar(enemy);
         setInterval(speedUp, 1000);
         if (colision(enemy,car)){
+            gameOver = true;
             gameOverScreen();
             break;
         }
@@ -110,13 +107,17 @@ function draw(){
 }
 
 
+document.body.addEventListener("click", () =>{
+    document.getElementById("sound").play();
+})
+
 function loop(){
-    control();
-    draw();
-    // if (gameOver){
-    //     gameOverScreen();
-    //     return;
-    // }    
-    requestAnimationFrame(loop);
+    if (!gameOver){
+        control();
+        draw(); 
+        requestAnimationFrame(loop);
+    }else{
+        gameOverScreen();
+    }
 }
 loop();

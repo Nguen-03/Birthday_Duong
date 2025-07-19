@@ -16,12 +16,17 @@
         body { margin: 0; background: #dc6e6e; overflow: hidden; }
         </style>
         <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div>
+            <audio id="sound" loop autoplay>
+                <source src="sound.mp3" type="audio/mpeg">
+            </audio>
+        </div>
         <div id="gameOver">
             <div id="notice">
-                <div>Ôi không! Bạn đã bị bắt vì gây tai nạn</div>
+                <div id="alert">ÔI KHÔNG!<br>Bạn đã bị bắt vì gây tai nạn</div>
                 <img id="police" src="police.jpg">
             </div>
-            <button id="replay">Chơi lại</button>
+            <button id="replay" onclick="location.reload()">Chơi lại</button>
         </div>
         <button class="butt" id="left">LEFT</button>
         <button class="butt" id="right">RIGHT</button>
